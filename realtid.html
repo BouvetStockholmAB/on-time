@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>Tider i Gröndal</title>
+  <meta charset="iso-8859-1">
+  <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+
+  function getSLInfo() {
+
+    /* 
+    var apiUrl = "realtid.php";
+
+    var async = $.ajaxSettings.async;
+    $.ajaxSetup({ "async": false });
+    var wmsjsondata = $.get(apiUrl).responseText;
+    $.ajaxSetup({ "async": async });
+    */
+
+    var wmsjsondata = '{"DPS":{"xmlnsxsi":"http:\/\/www.w3.org\/2001\/XMLSchema-instance","xmlnsxsd":"http:\/\/www.w3.org\/2001\/XMLSchema","xmlns":"http:\/\/www1.sl.se\/realtidws\/","LatestUpdate":"2014-02-28T14:52:17.2852328+01:00","ExecutionTime":"00:00:00.2031250","Buses":{"DpsBus":[{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"133","Destination":"Ekensberg","TimeTabledDateTime":"2014-02-28T14:51:50","ExpectedDateTime":"2014-02-28T14:51:38","DisplayTime":"0 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"161","Destination":"Bagarmossen","TimeTabledDateTime":"2014-02-28T14:58:17","ExpectedDateTime":"2014-02-28T14:58:17","DisplayTime":"6 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"152","Destination":"Bromma flygplats","TimeTabledDateTime":"2014-02-28T15:02:23","ExpectedDateTime":"2014-02-28T15:02:23","DisplayTime":"15:02"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"133","Destination":"Liljeholmen","TimeTabledDateTime":"2014-02-28T15:04:43","ExpectedDateTime":"2014-02-28T15:04:43","DisplayTime":"12 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"133","Destination":"Ekensberg","TimeTabledDateTime":"2014-02-28T15:07:21","ExpectedDateTime":"2014-02-28T15:07:21","DisplayTime":"15 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"152","Destination":"Liljeholmen","TimeTabledDateTime":"2014-02-28T15:04:59","ExpectedDateTime":"2014-02-28T15:08:24","DisplayTime":"16 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"161","Destination":"Gröndal","TimeTabledDateTime":"2014-02-28T15:12:27","ExpectedDateTime":"2014-02-28T15:12:14","DisplayTime":"19 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"161","Destination":"Bagarmossen","TimeTabledDateTime":"2014-02-28T15:16:17","ExpectedDateTime":"2014-02-28T15:16:17","DisplayTime":"24 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"152","Destination":"Bromma flygplats","TimeTabledDateTime":"2014-02-28T15:17:23","ExpectedDateTime":"2014-02-28T15:17:23","DisplayTime":"15:17"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"133","Destination":"Liljeholmen","TimeTabledDateTime":"2014-02-28T15:19:43","ExpectedDateTime":"2014-02-28T15:19:43","DisplayTime":"27 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"133","Destination":"Ekensberg","TimeTabledDateTime":"2014-02-28T15:20:21","ExpectedDateTime":"2014-02-28T15:20:21","DisplayTime":"28 min"},{"SiteId":"1605","StopAreaNumber":"13086","TransportMode":"BUS","StopAreaName":"Gröndal","LineNumber":"152","Destination":"Liljeholmen","TimeTabledDateTime":"2014-02-28T15:21:44","ExpectedDateTime":"2014-02-28T15:21:44","DisplayTime":"29 min"}]},"Metros":{},"Trains":{},"Trams":{"DpsTram":[{"SiteId":"1605","StopAreaNumber":"0","TransportMode":"TRAM","StopAreaName":"Gröndal","LineNumber":"22","Destination":"Sickla udde","TimeTabledDateTime":"2014-02-28T14:52:00","ExpectedDateTime":"2014-02-28T14:53:15","DisplayTime":"0 min","JourneyDirection":"2","GroupOfLine":"Tvärbanan"},{"SiteId":"1605","StopAreaNumber":"0","TransportMode":"TRAM","StopAreaName":"Gröndal","LineNumber":"22","Destination":"Sickla udde","TimeTabledDateTime":"2014-02-28T14:56:00","ExpectedDateTime":"2014-02-28T14:57:10","DisplayTime":"4 min","JourneyDirection":"2","GroupOfLine":"Tvärbanan"},{"SiteId":"1605","StopAreaNumber":"0","TransportMode":"TRAM","StopAreaName":"Gröndal","LineNumber":"22","Destination":"Sickla udde","TimeTabledDateTime":"2014-02-28T15:06:00","ExpectedDateTime":"2014-02-28T15:06:00","DisplayTime":"15:06","JourneyDirection":"2","GroupOfLine":"Tvärbanan"},{"SiteId":"1605","StopAreaNumber":"0","TransportMode":"TRAM","StopAreaName":"Gröndal","LineNumber":"22","Destination":"Sickla udde","TimeTabledDateTime":"2014-02-28T15:16:00","ExpectedDateTime":"2014-02-28T15:16:00","DisplayTime":"15:16","JourneyDirection":"2","GroupOfLine":"Tvärbanan"},{"SiteId":"1605","StopAreaNumber":"0","TransportMode":"TRAM","StopAreaName":"Gröndal","LineNumber":"22","Destination":"Alvik","TimeTabledDateTime":"2014-02-28T14:55:00","ExpectedDateTime":"2014-02-28T14:56:27","DisplayTime":"4 min","JourneyDirection":"1","GroupOfLine":"Tvärbanan"},{"SiteId":"1605","StopAreaNumber":"0","TransportMode":"TRAM","StopAreaName":"Gröndal","LineNumber":"22","Destination":"Alvik","TimeTabledDateTime":"2014-02-28T15:05:00","ExpectedDateTime":"2014-02-28T15:06:52","DisplayTime":"14 min","JourneyDirection":"1","GroupOfLine":"Tvärbanan"},{"SiteId":"1605","StopAreaNumber":"0","TransportMode":"TRAM","StopAreaName":"Gröndal","LineNumber":"22","Destination":"Alvik","TimeTabledDateTime":"2014-02-28T15:15:00","ExpectedDateTime":"2014-02-28T15:15:00","DisplayTime":"15:15","JourneyDirection":"1","GroupOfLine":"Tvärbanan"}]}}}';
+
+    var obj = JSON && JSON.parse(wmsjsondata) || $.parseJSON(wmsjsondata);
+
+    var html = "";
+
+    for(var i = 0; i < obj.DPS.Buses.DpsBus.length; i++) {
+      var item = obj.DPS.Buses.DpsBus[i];
+      if (item.Destination === "Liljeholmen") {
+        html += "<p>Buss till Liljeholmen : " + item.DisplayTime + "</p>";
+      }
+    }
+
+    for(var i = 0; i < obj.DPS.Trams.DpsTram.length; i++) {
+      var item = obj.DPS.Trams.DpsTram[i];
+      if (item.Destination === "Alvik") {
+        html += "<p>Tvärbana till Alvik : " + item.DisplayTime + "</p>";
+      } else if (item.Destination === "Sickla udde") {
+        html += "<p>Tvärbana till Sickla udde : " + item.DisplayTime + "</p>";
+      }
+
+    }
+
+    html += "<br><br>" + obj.DPS.LatestUpdate;
+
+    return html;
+  }
+  
+  </script>
+</head>
+<body>
+  <h1>Tider i Gröndal</h1>
+  <script type="text/javascript">
+  document.write(getSLInfo());
+  d3.selectAll("p").style("color", function() {
+    return "hsl(" + Math.random() * 360 + ",100%,50%)";
+  });
+  </script>
+</body>
+</html>

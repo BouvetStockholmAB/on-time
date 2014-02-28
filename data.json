@@ -1,0 +1,35 @@
+{
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+    {
+     "name": "tvärbana alvik",
+     "children": [
+      {"name": "1", "size": 1000},
+      {"name": "6", "size": 500},
+      {"name": "12", "size": 200},
+      {"name": "26", "size": 100}
+     ]
+    },
+    {
+     "name": "tvärbana sickla udde",
+     "children": [
+      {"name": "1", "size": 1000},
+      {"name": "11", "size": 200},
+      {"name": "21", "size": 100},
+      {"name": "31", "size": 50},
+      {"name": "41", "size": 25}
+     ]
+    },
+    {
+     "name": "tvärbana liljeholmen",
+     "children": [
+      {"name": "8", "size": 250}
+     ]
+    }
+   ]
+  }
+ ]
+}
