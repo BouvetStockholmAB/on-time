@@ -14,8 +14,8 @@ text {
 var width = 1000;
 var height = 650;
 
-var format = d3.format(",d"),
-    color = d3.scale.category20c();
+var format = d3.format(",d");
+var color = d3.scale.category10();
 
 var bubble = d3.layout.pack()
     .sort(null)
@@ -31,40 +31,22 @@ d3.json("http://sl.lobs.se/realtid.php", function(error, root) {
   var node = svg.selectAll(".node")
       .data(bubble.nodes(classes(root))
       .filter(function(d) { return !d.children; }))
-    .enter().append("g")
+      .enter().append("g")
       .attr("class", "node")
       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
   node.append("title")
-      .text(function(d) { return d.className + ": " + format(d.value); });
-
-  console.log(color("a"));
-  console.log(color("b"));
-  console.log(color("c"));
-  console.log(color("d"));
-  console.log(color("e"));
-  console.log(color("f"));
-  console.log(color("g"));
+      .text(function(d) { return d.displayTime + ": " + format(d.value); });
 
   node.append("circle")
-      .attr("r", function(d) { return d.r; getCircleSizeFromTime(d.className); })
-      .style("fill", function(d) { console.log(d.packageName + " : " + color(d.packageName)); 
-        return color(d.packageName); });
-
-  console.log(color("a"));
-  console.log(color("b"));
-  console.log(color("c"));
-  console.log(color("d"));
-  console.log(color("e"));
-  console.log(color("f"));
-  console.log(color("g"));
-
+      .attr("r", function(d) { return d.r; getCircleSizeFromTime(d.displayTime); })
+      .style("fill", function(d) { return color(d.transportTitle); });
 
   node.append("text")
       .attr("dy", ".3em")
       .style("text-anchor", "middle")
       .style("font-size",function(d) { return (Math.round(d.r / 4) + 10) + "px"; })
-      .text(function(d) { return getTextFromTime(d.className); });
+      .text(function(d) { return getTextFromTime(d.displayTime); });
 });
 
 function getCircleSizeFromTime(time) {
@@ -81,15 +63,23 @@ function getTextFromTime(time) {
   return time;
 }
 
+// TODO: move filter somewhere
+var interestingObjects = ['BUS 133 mot Liljeholmen', 'TRAM 22 mot Alvik', 'TRAM 22 mot Sickla udde']
+
+function pushChild(child, classes) {
+	//console.log(child);
+	var transportTitle = child.TransportMode + " " + child.LineNumber + " mot " + child.Destination;
+	if (interestingObjects.indexOf(transportTitle) >= 0)
+		classes.push({transportTitle: transportTitle, displayTime: child.DisplayTime, value: getCircleSizeFromTime (child.DisplayTime)});
+}
+
 function classes(root) {
   var classes = [];
-  root.DPS.Buses.DpsBus.forEach(function(child) { 
-    classes.push({packageName: child.LineNumber, className: child.DisplayTime, value: getCircleSizeFromTime (child.DisplayTime)})});
-  root.DPS.Trams.DpsTram.forEach(function(child) { 
-    classes.push({packageName: child.LineNumber, className: child.DisplayTime, value: getCircleSizeFromTime (child.DisplayTime)})});
+  root.DPS.Buses.DpsBus.forEach(function(child) { pushChild(child, classes); });
+  root.DPS.Trams.DpsTram.forEach(function(child) { pushChild(child, classes); });
   return {children: classes};
 }
 
-d3.select(self.frameElement).style("height", diameter + "px");
+d3.select(self.frameElement).style("height", height + "px");
 
 </script>
