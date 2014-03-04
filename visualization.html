@@ -36,7 +36,7 @@ d3.json("http://sl.lobs.se/realtid.php", function(error, root) {
       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
   node.append("title")
-      .text(function(d) { return d.displayTime + ": " + format(d.value); });
+      .text(function(d) { return d.transportTitle; });
 
   node.append("circle")
       .attr("r", function(d) { return d.r; getCircleSizeFromTime(d.displayTime); })
@@ -45,7 +45,7 @@ d3.json("http://sl.lobs.se/realtid.php", function(error, root) {
   node.append("text")
       .attr("dy", ".3em")
       .style("text-anchor", "middle")
-      .style("font-size",function(d) { return (Math.round(d.r / 4) + 10) + "px"; })
+      .style("font-size",function(d) { return (Math.round(d.r / 3) + 10) + "px"; })
       .text(function(d) { return getTextFromTime(d.displayTime); });
 });
 
